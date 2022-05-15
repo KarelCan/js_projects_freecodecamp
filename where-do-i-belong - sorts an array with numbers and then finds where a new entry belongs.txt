@@ -1,0 +1,27 @@
+function getIndexToIns(arr, num) {
+  for (var i=0;i<arr.length;i++){
+    if (arr[i]>arr[i+1]){
+      //console.log(arr)
+      var leftValue = arr[i];
+      var rightValue = arr[i+1];
+      //console.log("I'll switch " + arr[i] + " with " + arr[i+1])
+      arr[i] = arr[i+1];
+      arr[i+1] = leftValue;
+      i=-1;
+      //console.log("result is:")
+      //console.log(arr)
+    }
+
+  }
+
+  for (var j=0;j<arr.length;j++){
+    if(arr[j]>=num){
+       return j;
+    }
+
+  }
+
+  return arr.length; 
+}
+
+console.log(getIndexToIns([3,10,5], 3));

@@ -1,0 +1,13 @@
+function sumAll(arr) {
+  var newArr = [...arr]
+  newArr.sort(function(a,b){return a-b})
+  var biggerNum = newArr[1]
+  for (var i=0;newArr[i]<biggerNum;i++){
+    newArr[i+1]=newArr[i]+1
+  }
+  var result = newArr.reduce(function(accumulator,value){return accumulator+value})
+  return result;
+}
+
+sumAll([3, 4]);
+console.log()

@@ -1,0 +1,124 @@
+function checkCashRegister(price, cash, cid) {
+for (var denomination of cid){
+    denomination[1]=Math.round(denomination[1]*100)
+  }
+price = price*100
+cash=cash*100
+
+var inCid = cid.reduce(function(accu,val){return accu+val[1]},0)
+
+
+var output = {status:"INSUFFICIENT_FUNDS",
+              change:[]}
+
+cid=cid.map(function(val){val[1]=val[1];return val}) //converts all cid nums to a num with two decimal places
+
+              
+var denominationValues = 
+{ "PENNY": 1,
+  "NICKEL": 5,
+  "DIME": 10,
+  "QUARTER": 25,
+  "ONE": 100,
+  "FIVE": 500,
+  "TEN": 1000,
+  "TWENTY": 2000,
+  'ONE HUNDRED': 10000 }
+
+  var changeObject = 
+{ "PENNY": 0,
+  "NICKEL": 0,
+  "DIME": 0,
+  "QUARTER": 0,
+  "ONE": 0,
+  "FIVE": 0,
+  "TEN": 0,
+  "TWENTY": 0,
+  'ONE HUNDRED': 0}
+
+  var emptyChangeObject = 
+{ "PENNY": 0,
+  "NICKEL": 0,
+  "DIME": 0,
+  "QUARTER": 0,
+  "ONE": 0,
+  "FIVE": 0,
+  "TEN": 0,
+  "TWENTY": 0,
+  'ONE HUNDRED': 0}
+
+var toReturn =cash-price
+
+
+
+
+if(inCid>=toReturn){ 
+for (var i=cid.length-1;i>-1;i--){
+  
+  if(cid[i][1]>0&&denominationValues[cid[i][0]]<=toReturn){
+    //console.log("We can cash out a " + cid[i][0] + ".")
+    var nameOfDenomination = cid[i][0]
+    var currentBalanceOfDenomination = cid[i][1]
+    var valueOfCurrentDenomination = denominationValues[cid[i][0]]
+    
+    changeObject[nameOfDenomination]=changeObject[nameOfDenomination]+valueOfCurrentDenomination
+    //console.log("So I just added " + valueOfCurrentDenomination/100 + " to the changeObject. This will later create the change array.")
+    toReturn-=valueOfCurrentDenomination
+    //console.log("And I removed " + valueOfCurrentDenomination/100 + " from toReturn. There is " + toReturn/100 + " remaining to pay out.")
+    cid[i][1]=(cid[i][1]-valueOfCurrentDenomination) //if I paid out 1 QUATER, it will remove 0.25 from the current balance of quaters.
+    //console.log("And there is " + cid[i][1]/100 + " dollars left in " + valueOfCurrentDenomination/100 + " dollar bills/coins.")
+   // console.log()
+    i=cid.length-1
+    if(toReturn<=0){i=-100000} 
+  }
+}
+}
+
+var changeArray = Object.entries(changeObject) //changes the object into an array
+
+
+for (var denomination of changeArray){
+    denomination[1]=parseFloat(denomination[1]) 
+    denomination[1]=Math.round(denomination[1]).toFixed(2)/100
+  } 
+
+
+for (var denomination of changeArray){
+  if (denomination[1]!=0){
+    output.change.unshift(denomination)
+    output.status="OPEN"
+    if(cid==[["PENNY", 0], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]){
+
+    }
+  }
+}
+  
+
+  if (toReturn!=0){output={status: "INSUFFICIENT_FUNDS", change: []}}
+  
+  
+  
+  for (var denomination of cid){
+    denomination[1]=(denomination[1].toFixed(2))
+  } 
+
+ var trueCount = 0;
+
+ for (var val of cid){
+   if (val[1]==0.00){trueCount++;}
+   if (trueCount == 9){output= {status: "CLOSED", change: [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]}}
+ }
+  
+
+  console.log(output)
+  return output;  
+}
+ 
+checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])
+
+
+function toObject(array){
+  const arrayAsObject = Object.entries(array)
+  .reduce((accum, [index, [d,v]]) => {accum[d]=v;return accum}, {});
+  return arrayAsObject
+}

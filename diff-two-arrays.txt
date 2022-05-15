@@ -1,0 +1,17 @@
+function diffArray(arr1, arr2) {
+  var newArr = [];
+  arr1.map(function(value){
+    if (arr2.includes(value)==false){
+      newArr.push(value)
+    }
+  })
+  arr2.map(function(value){
+    if (arr1.includes(value)==false){
+      newArr.push(value)
+    }
+  })
+  return newArr;
+}
+
+console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+

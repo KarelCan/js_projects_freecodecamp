@@ -1,0 +1,18 @@
+/*this function finds the length of the longest word in the string!*/
+function findLongestWordLength(str) {
+  var regEx = /\b\w+\b/g /*look for whole words in the whole string (thats the g)*/
+  var resultArr = str.match(regEx) /*Outputs an Array of all words*/
+  var lengthOfTheLongestWord = 0; 
+  for (var i=0;i<resultArr.length;i++) {
+    if (resultArr[i].length>lengthOfTheLongestWord){ /*If the current word is longer then the previous longest (or 0 in the first instance)*/
+      lengthOfTheLongestWord = resultArr[i].length /*Insert the length of the longest word*/
+    }
+  }
+
+
+  return lengthOfTheLongestWord;
+}
+var regEx = /\b\w+\b/gi
+
+console.log(findLongestWordLength("The quick brown fox jumped over the lazy dog"));
+//console.log("The quick brown fox jumped over the lazy dog".match(regEx))

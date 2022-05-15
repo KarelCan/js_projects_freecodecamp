@@ -1,0 +1,28 @@
+function convertHTML(str) {
+  var result = str;
+  result=result.split("")
+  var regEx = /\w/
+  for (var i=0;i<str.length;i++){
+    if (regEx.test(result[i])){console.log("yee")
+
+    }else {
+      switch(result[i]){
+        case "&":result[i]="&amp;"
+        break;
+        case "<":result[i]="&lt;"
+        break;
+        case "\"":result[i]="&quot;"
+        break;
+        case ">":result[i]="&gt;"
+        break;
+        case "'":result[i]="&apos;"
+        break;
+      }
+    }
+  }
+  result = result.join("")
+  return result;
+}
+
+var test =convertHTML("Sixty > twelve");
+console.log(test)

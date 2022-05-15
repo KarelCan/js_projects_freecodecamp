@@ -1,0 +1,18 @@
+function translatePigLatin(str) {
+  var regEx = /^[bcdfghjklmnpqstvwxz]+/;
+  var regExVowel = /^[aeiou]+/;
+  if (regEx.test(str)){
+    var extractedLettersBeginning = str.match(/^[bcdfghjklmnpqstvwxz]+/,"")
+    console.log(extractedLettersBeginning[0])
+    var str= str.replace(/^[bcdfghjklmnpqstvwxz]+/,"")
+    str = str.concat(extractedLettersBeginning + "ay")
+    console.log(str)
+    
+  } else if (regExVowel.test(str)){
+    str = str.concat("way")
+
+  }else str = str.concat("ay")
+  return str;
+}
+
+console.log(translatePigLatin("aschwartz")); 

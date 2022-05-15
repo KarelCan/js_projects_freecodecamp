@@ -1,0 +1,38 @@
+function reverseString(str) {
+    for (var reversedString="",i =str.length-1;i>=0;i--) {
+        reversedString+=str[i]
+    }
+  return reversedString;
+}
+
+
+function removeAllWeirdCharacters(str) {
+let fixRegex = /[\W_ ]/g;
+  var str = str.replace(fixRegex,"");
+  return str
+}
+
+
+function palindrome(str) {
+  str = removeAllWeirdCharacters(str);
+  str=str.toLowerCase()
+  let stringLength = str.length;
+  if (stringLength%2==1)/*if string has odd number of characters*/{
+    str.substr((stringLength-1)/2)
+    let stringLength = str.length;
+    var firstHalfOfTheWord = str.substr(0,(stringLength)/2)
+    var reversedSecondHalfOfTheWord = reverseString(str.substr(stringLength/2+1))
+  } else {
+    var firstHalfOfTheWord = str.substr(0,(stringLength)/2)
+    var reversedSecondHalfOfTheWord = reverseString(str.substr(stringLength/2))
+  }
+  if(firstHalfOfTheWord == reversedSecondHalfOfTheWord) {
+    return true
+
+  } else {return false}
+  
+}
+
+
+
+console.log(palindrome("1 eye for of 1 eye."));

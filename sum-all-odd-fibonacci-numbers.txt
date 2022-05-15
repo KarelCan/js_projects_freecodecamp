@@ -1,0 +1,20 @@
+function sumFibs(num) {
+  var fibonacci = [1,1]
+  var sum = 0;
+
+
+  for (var i=0;i<100;i++){
+    var newNum = fibonacci[i]+fibonacci[i+1]
+    fibonacci.push(newNum)
+
+  }
+  var j =0;
+  var result=0;
+  while(fibonacci[j]<=num){
+    if(fibonacci[j]%2==1){result=result+fibonacci[j]};
+    j++
+  } 
+  return result;
+}
+
+sumFibs(4);  

@@ -1,0 +1,10 @@
+function titleCase(str) {
+  str = str.toLowerCase(str); //all to lower case
+  str = str.split(" "); // split characters separated with a space into an Array 
+  str = str.map(function(value){ //map takes 1 parameter - which imputs the values from the Array. Then it uses replace to replace the character with index 0 and makes it uppercase.
+    return value.replace(value.charAt(0),value.charAt(0).toUpperCase())
+  })
+  str = str.join(" ") //Joins the Array together into a string, leaving a space between each item in the Array
+
+  return str
+} 

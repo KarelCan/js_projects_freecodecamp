@@ -1,0 +1,46 @@
+function convertToRoman(num) {
+  const fives = [5,50,500];
+  const romanFives = ["V","L","D"]
+  const ones = [1,10,100,1000];
+  const romanOnes = ["I","X","C","M"];
+  var result = [];
+  var separatedDigits = num.toString(10).split(''); //splits the num into an array of digits
+  var numberOfDigits = separatedDigits.length
+  for (var i=0;i<numberOfDigits;i++){
+    var digit=separatedDigits.pop();
+    if (digit==1){
+      result.unshift(romanOnes[i])
+    }
+    if (digit==2){
+      result.unshift(romanOnes[i]+romanOnes[i])
+    }
+    if (digit==3){
+      result.unshift(romanOnes[i]+romanOnes[i]+romanOnes[i])
+    }
+    if (digit==4){
+      result.unshift(romanOnes[i]+romanFives[i])
+    }
+    if (digit==5){
+      result.unshift(romanFives[i])
+    }
+    if (digit==6){
+      result.unshift(romanFives[i]+romanOnes[i])
+    }
+    if (digit==7){
+      result.unshift(romanFives[i]+romanOnes[i]+romanOnes[i])
+    }
+    if (digit==8){
+      result.unshift(romanFives[i]+romanOnes[i]+romanOnes[i]+romanOnes[i])
+    }
+    if (digit==9){
+      result.unshift(romanOnes[i]+romanOnes[i+1])
+    }
+
+
+  }
+
+  result=result.join("")
+ return result;
+}
+
+convertToRoman(1576);

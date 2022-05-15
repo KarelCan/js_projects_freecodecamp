@@ -1,0 +1,19 @@
+function rot13(str,shift=13) {
+  str=str.toUpperCase()
+  var alphabeth = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var alhabethInAnArray=alphabeth.split("");
+  var strArray = str.split("");
+  var lengthOfTheString = strArray.length;
+  var result = [];
+  for (var i=0;i<lengthOfTheString;i++){
+    if /*(strArray[i].replace(/\w/i,"LETTER")=="LETTER")*/
+      (alhabethInAnArray.indexOf(strArray[i])==-1){result.push(strArray[i])}else{
+        var answerCharacter = alphabeth[alhabethInAnArray.indexOf(strArray[i])+shift]
+      result.push(answerCharacter)
+    }
+  }
+
+  return result.join("");
+}
+
+console.log(rot13("HTGLC",-2));

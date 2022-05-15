@@ -1,0 +1,17 @@
+function mutation(arr) {
+var variable = ("[".concat(arr[0])).concat("]+")
+
+var regEx = new RegExp(variable,"gi")
+arr[1]=arr[1].replace(regEx,"")
+console.log(arr)
+
+if (Boolean(arr[1])/*the second item is not empty*/){
+  return false
+} else {return true}
+
+  return arr;
+}
+
+console.log(mutation(["abdba", "d"]));
+
+

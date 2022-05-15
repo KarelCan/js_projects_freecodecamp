@@ -1,0 +1,7 @@
+function destroyer(arr,...toRemove) {
+  var result = [];
+  result = arr.filter(function(element){return !toRemove.includes(element)})
+  return result;
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);

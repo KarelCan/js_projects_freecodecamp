@@ -1,0 +1,25 @@
+//takes an array of entries and devides them into smaller arrays with n size
+
+
+function chunkArrayInGroups(arr, size) {
+  var howManyAreNeeded = Math.ceil(arr.length/size)
+  console.log(howManyAreNeeded)
+  var result = Array.from({ length: howManyAreNeeded }, () => []);
+  
+  if(size>arr.length){return arr};
+  
+  for (var i=0;0<arr.length;i++){
+    for (var j=0;j<size;j++){
+      if(arr.length==0){
+        return result} else result[i][j] = arr.shift()
+                            console.log(result);
+    }
+    
+  }
+  
+  
+console.log(result);
+  return result; 
+}
+
+chunkArrayInGroups([0, 1, 2, 3, 4, 5], 4);
